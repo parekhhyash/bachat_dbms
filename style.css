@@ -1,0 +1,4 @@
+/* Small helper CSS - primary styling handled with Tailwind CDN */
+html,body { height:100%; }
+body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+.table-auto { width:100%; }

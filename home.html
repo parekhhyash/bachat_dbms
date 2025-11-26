@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block nav_right %}<a class="px-3 py-1 border rounded text-sm" href="/app/dashboard">Go to App</a>{% endblock %}
+{% block content %}
+  <section class="text-center py-24">
+    <h1 class="text-4xl font-semibold mb-4">Manage your money simply.</h1>
+    <p class="text-gray-600 mb-6">Track expenses, set budgets & see where your money goes — fast and minimal.</p>
+    <div class="inline-flex gap-3">
+      <a class="px-4 py-2 bg-black text-white rounded" href="/signup">Sign Up</a>
+      <a class="px-4 py-2 border rounded" href="/login">Login</a>
+    </div>
+  </section>
+{% endblock %}

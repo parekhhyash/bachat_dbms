@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block nav_center %}<a href="/app/dashboard" class="hover:underline">Dashboard</a><a href="/app/analytics" class="hover:underline">Analytics</a><a href="/app/transactions" class="hover:underline">Transactions</a>{% endblock %}
+{% block nav_right %}<a href="/logout" class="px-3 py-1 border rounded text-sm">Logout</a>{% endblock %}
+{% block content %}
+<h2 class="text-2xl font-semibold mb-4">Analytics</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+  <div class="p-4 border rounded">
+    <h4 class="font-medium mb-2">Category-wise spend</h4>
+    <canvas id="pieChart"></canvas>
+  </div>
+  <div class="p-4 border rounded">
+    <h4 class="font-medium mb-2">Monthly spend</h4>
+    <canvas id="barChart"></canvas>
+  </div>
+</div>
+<script src="/static/js/charts.js"></script>
+{% endblock %}

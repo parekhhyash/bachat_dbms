@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block nav_center %}<a href="/app/dashboard" class="hover:underline">Dashboard</a><a href="/app/analytics" class="hover:underline">Analytics</a><a href="/app/transactions" class="hover:underline">Transactions</a>{% endblock %}
+{% block nav_right %}<a href="/logout" class="px-3 py-1 border rounded text-sm">Logout</a>{% endblock %}
+{% block content %}
+<div class="max-w-md mx-auto p-4 border rounded">
+  <h3 class="font-medium mb-3">Edit transaction</h3>
+  <form method="POST" class="space-y-3">
+    <input name="date" type="date" value="{{ tx['date'] }}" required class="w-full border px-3 py-2 rounded" />
+    <input name="category" value="{{ tx['category'] }}" required class="w-full border px-3 py-2 rounded" />
+    <input name="amount" type="number" step="0.01" value="{{ tx['amount'] }}" required class="w-full border px-3 py-2 rounded" />
+    <input name="note" value="{{ tx['note'] }}" class="w-full border px-3 py-2 rounded" />
+    <div class="flex justify-end gap-2">
+      <a href="/app/transactions" class="px-3 py-1 border rounded">Cancel</a>
+      <button class="px-3 py-1 bg-black text-white rounded" type="submit">Save</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

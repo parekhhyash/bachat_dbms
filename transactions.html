@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block nav_center %}<a href="/app/dashboard" class="hover:underline">Dashboard</a><a href="/app/analytics" class="hover:underline">Analytics</a><a href="/app/transactions" class="hover:underline">Transactions</a>{% endblock %}
+{% block nav_right %}<a href="/logout" class="px-3 py-1 border rounded text-sm">Logout</a>{% endblock %}
+{% block content %}
+<h2 class="text-2xl font-semibold mb-4">Transactions</h2>
+
+<div class="mb-4 p-4 border rounded">
+  <form method="GET" action="/app/transactions" class="flex flex-col md:flex-row gap-2 md:items-end">
+    <div>
+      <label class="text-sm text-gray-600">Category</label>
+      <input name="category" value="{{ filter_category }}" placeholder="Category" class="border px-2 py-1 rounded" />
+    </div>
+    <div>
+      <label class="text-sm text-gray-600">Month</label>
+      <input name="month" type="month" value="{{ filter_month }}" class="border px-2 py-1 rounded" />
+    </div>
+    <div class="flex items-center gap-2">
+      <button class="px-3 py-1 bg-black text-white rounded" type="submit">Filter</button>
+      <a href="/app/transactions" class="px-3 py-1 border rounded">Clear</a>
+    </div>
+    <div class="ml-auto text-sm text-gray-600">Total: ₹{{ '%.2f'|format(total) }}</div>
+  </form>
+</div>
+
+<div class="overflow-x-auto border rounded">
+  <table class="min-w-full">
+    <thead class="bg-gray-50">
+      <tr>
+        <th class="p-2 text-left">Date</th>
+        <th class="p-2 text-left">Category</th>
+        <th class="p-2 text-left">Amount</th>
+        <th class="p-2 text-left">Note</th>
+        <th class="p-2 text-left">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in rows %}
+      <tr class="border-t">
+        <td class="p-2">{{ r['date'] }}</td>
+        <td class="p-2">{{ r['category'] }}</td>
+        <td class="p-2">₹{{ '%.2f'|format(r['amount']) }}</td>
+        <td class="p-2">{{ r['note'] }}</td>
+        <td class="p-2">
+          <a href="/app/transactions/edit/{{ r['id'] }}" class="text-blue-600 underline mr-3">Edit</a>
+          <form method="POST" action="/app/transactions/delete/{{ r['id'] }}" style="display:inline" onsubmit="return confirm('Delete this transaction?');">
+            <button class="text-red-600 underline">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td class="p-4" colspan="5">No transactions found.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

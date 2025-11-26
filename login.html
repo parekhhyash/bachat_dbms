@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block nav_right %}<a href="/" class="text-sm">Home</a>{% endblock %}
+{% block content %}
+<div class="max-w-md mx-auto bg-white border rounded p-6 shadow-sm">
+  <h2 class="text-xl font-medium mb-4">Login</h2>
+  <form method="POST" class="space-y-3">
+    <input name="username" placeholder="Username" required class="w-full border rounded px-3 py-2" />
+    <input name="password" type="password" placeholder="Password" required class="w-full border rounded px-3 py-2" />
+    <div class="flex justify-between items-center">
+      <a href="/signup" class="text-sm text-gray-600">Create account</a>
+      <button class="px-4 py-2 bg-black text-white rounded" type="submit">Login</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
